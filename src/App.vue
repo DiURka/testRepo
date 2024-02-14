@@ -1,10 +1,33 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <h1>{{ title }}</h1>
+  <br><br>
+  <input type="text" ref="name">
+  <button @click="handleClick">Click Me</button>
+  <br><br>
+  <Modal />
 </template>
+
+<script>
+import Modal from './components/Modal'
+
+export default {
+  name: 'App',
+  components: { Modal },
+  data() {
+    return {
+      title: 'Application',
+    }
+  },
+  methods: {
+    handleClick() {
+      console.log(this.$refs.name);
+      this.$refs.name.classList.add('active');
+      this.$refs.name.focus();
+    }
+  },
+}
+
+</script>
 
 <style>
 #app {
@@ -14,17 +37,9 @@
   text-align: center;
   color: #2c3e50;
 }
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+h1 {
+  border-bottom: 1px solid #ddd;
+  display: inline-block;
+  padding-bottom: 10px;
 }
 </style>
